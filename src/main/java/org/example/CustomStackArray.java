@@ -5,7 +5,7 @@ import java.util.EmptyStackException;
 public class CustomStackArray {
     private int[] data;
     private int top;
-    private int tail; // Добавляем поле для отслеживания конца стека
+    private int tail;
 
     public CustomStackArray(int capacity) {
         data = new int[capacity];
@@ -18,7 +18,7 @@ public class CustomStackArray {
             data[++top] = value;
         } else {
             // Если массив заполнен, вызываем метод для увеличения его размера
-            increaseCapacity();
+            grow();
             data[++top] = value;
         }
     }
@@ -41,7 +41,7 @@ public class CustomStackArray {
         return top < tail;
     }
 
-    private void increaseCapacity() {
+    private void grow() {
         int newCapacity = data.length * 2; // Увеличиваем размер массива в два раза
         int[] newData = new int[newCapacity];
 

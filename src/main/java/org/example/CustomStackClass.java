@@ -1,6 +1,6 @@
 package org.example;
 
-public class Livecoding1 {
+public class CustomStackClass {
     public static void main(String[] args) {
 
     }
