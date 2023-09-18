@@ -2,13 +2,15 @@ package org.example;
 
 import java.util.EmptyStackException;
 
-public class CustomStackArray {
+public class CustomStackArrayV2 {
     private int[] data;
     private int top;
+    private int tail;
 
-    public CustomStackArray(int capacity) {
+    public CustomStackArrayV2(int capacity) {
         data = new int[capacity];
         top = -1;
+        tail = 0; // Изначально конец стека находится в начале массива
     }
 
     public void push(int value) {
@@ -22,21 +24,21 @@ public class CustomStackArray {
     }
 
     public int pop() {
-        if (top >= 0) {
+        if (top >= tail) {
             return data[top--];
         }
         throw new EmptyStackException();
     }
 
     public int peek() {
-        if (top >= 0) {
+        if (top >= tail) {
             return data[top];
         }
         throw new EmptyStackException();
     }
 
     public boolean isEmpty() {
-        return top == -1;
+        return top < tail;
     }
 
     private void grow() {
