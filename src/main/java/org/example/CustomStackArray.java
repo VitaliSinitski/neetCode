@@ -12,13 +12,11 @@ public class CustomStackArray {
     }
 
     public void push(int value) {
-        if (top < data.length - 1) {
-            data[++top] = value;
-        } else {
+        if (top >= data.length - 1) {
             // Если массив заполнен, вызываем метод для увеличения его размера
             grow();
-            data[++top] = value;
         }
+        data[++top] = value;
     }
 
     public int pop() {

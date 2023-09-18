@@ -24,6 +24,7 @@ public class Liviecoding2 {
             }
         }
         // стримы
-        // сортировка
+        // сортировк
+        return null;
     }
 }
