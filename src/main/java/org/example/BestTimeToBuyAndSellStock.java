@@ -30,22 +30,64 @@ package org.example;
 public class BestTimeToBuyAndSellStock {
     public static void main(String[] args) {
         int[] prices;
-        prices = new int[]{7,1,5,3,6,4};
+        prices = new int[]{7, 1, 5, 3, 6, 4};
 //        prices = new int[]{7,6,4,3,1};
         System.out.println(maxProfit(prices));
+        System.out.println(maxProfit2(prices));
     }
 
     public static int maxProfit(int[] prices) {
-        int minIndex = 0;
-        int maxIndex;
-        for (int i = 0; i < prices.length; i++) {
-            if (prices[i] < prices[minIndex]) minIndex = i;
+        if (prices == null || prices.length <= 1) return 0;
+        int minBuy = prices[0];
+        int profit = 0;         // Initialize the maximum profit
+        for (int i = 1; i < prices.length; i++) {
+            minBuy = Math.min(minBuy, prices[i]);   // Get the minimum price to buy...
+
+            // (prices[i] - minBuy), и, если она больше, чем текущая максимальная прибыль, profit обновляется.
+            profit = Math.max(profit, prices[i] - minBuy);
         }
-        if (minIndex == prices.length -1) return 0;
-        maxIndex = minIndex;
-        for (int i = minIndex + 1; i < prices.length; i++) {
-            if (prices[i] > prices[maxIndex]) maxIndex = i;
-        }
-        return prices[maxIndex] - prices[minIndex];
+        return profit;
     }
+
+    public static int maxProfit2(int[] prices) {
+        if (prices == null || prices.length <= 1) return 0;
+        int minBuy = prices[0];
+        int maxProfit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            minBuy = Math.min(minBuy, prices[i]);
+            maxProfit = Math.max(maxProfit, prices[i] - minBuy);
+        }
+        return maxProfit;
+    }
+
+    /*
+     * Данная задача решается с использованием жадного подхода (greedy approach)
+     * и состоит в поиске наибольшей прибыли при покупке акций и продаже их в будущем.
+     *
+     * 1. В начале функции `maxProfit` проверяется базовый случай: если массив `prices` пустой
+     * или содержит только один элемент (что означает, что невозможно провести транзакцию),
+     * функция возвращает 0.
+     *
+     * 2. Создается переменная `minBuy`, которая инициализируется значением цены акции
+     * на первый день (`prices[0]`). Это значение представляет собой наименьшую цену для покупки акции.
+     *
+     * 3. Создается переменная `profit`, которая инициализируется нулем.
+     * Эта переменная будет хранить максимальную прибыль, которую можно получить.
+     *
+     * 4. Затем цикл начинается с индекса 1 и проходит по всем дням, начиная с второго дня.
+     *
+     * 5. На каждом шаге цикла:
+     *    - `minBuy` обновляется, как минимум между текущей `minBuy` и ценой акции в текущий день (`prices[i]`).
+     * Это гарантирует, что `minBuy` всегда содержит наименьшую цену для покупки акции на предыдущих днях.
+     *    - Разница между текущей ценой акции и `minBuy` сравнивается с текущей максимальной прибылью
+     * (`prices[i] - minBuy`), и, если она больше, чем текущая максимальная прибыль, `profit` обновляется.
+     *
+     * 6. После завершения цикла возвращается значение `profit`,
+     * которое представляет собой максимальную прибыль, которую можно получить,
+     * выбирая оптимальный момент для покупки и продажи акции.
+     *
+     * Таким образом, алгоритм проходит по всем дням, сохраняя наименьшую цену для покупки
+     * и обновляя максимальную прибыль при возможности. Результатом является максимальная прибыль,
+     * которую можно получить при соблюдении условий задачи.
+     */
 }
