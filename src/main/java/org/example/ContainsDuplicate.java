@@ -40,6 +40,7 @@ public class ContainsDuplicate {
         System.out.println(containsDuplicateHash(nums));
     }
 
+
     public static boolean containsDuplicateHash(Integer[] nums) {
         HashSet<Integer> numbers = new HashSet<>();
         for (int i = 0; i < nums.length; i++) {

@@ -18,14 +18,14 @@ public class CustomQueueArrayV4<T> {
     }
 
     // Вспомогательная функция для удаления переднего элемента из очереди
-    public int dequeue() {
+    public T dequeue() {
         // проверка на опустошение queue
         if (isEmpty()) {
             System.out.println("Underflow\nProgram Terminated");
             System.exit(-1);
         }
 
-        int x = arr[front];
+        T x = arr[front];
 
         System.out.println("Removing " + x);
 
@@ -36,7 +36,7 @@ public class CustomQueueArrayV4<T> {
     }
 
     // Вспомогательная функция для добавления элемента в queue
-    public void enqueue(int item) {
+    public void enqueue(T item) {
         // проверка на переполнение queue
         if (isFull()) {
             System.out.println("Overflow\nProgram Terminated");
@@ -51,7 +51,7 @@ public class CustomQueueArrayV4<T> {
     }
 
     // Вспомогательная функция для возврата первого элемента queue
-    public int peek() {
+    public T peek() {
         if (isEmpty()) {
             System.out.println("Underflow\nProgram Terminated");
             System.exit(-1);
